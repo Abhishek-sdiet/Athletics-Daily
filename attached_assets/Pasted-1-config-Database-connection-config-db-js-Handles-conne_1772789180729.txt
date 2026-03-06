@@ -1,0 +1,257 @@
+1️⃣ config
+
+Database connection.
+
+config/db.js
+
+Handles connection to MongoDB.
+
+2️⃣ models (Database Schema)
+User.js
+
+Stores player accounts.
+
+User
+- _id
+- username
+- email
+- password
+- createdAt
+Question.js
+
+Stores daily puzzles.
+
+Question
+- _id
+- questionText
+- answer
+- date
+- category
+- createdAt
+
+Example:
+
+{
+questionText: "City of 2012 Olympic athletics",
+answer: "LONDON",
+date: "2026-03-10"
+}
+
+This allows you to upload 7 days questions easily.
+
+GameResult.js
+
+Stores player results.
+
+GameResult
+- userId
+- questionDate
+- attempts
+- isSolved
+- playedAt
+
+Example:
+
+{
+userId: 12345,
+questionDate: "2026-03-10",
+attempts: 3,
+isSolved: true
+}
+
+This prevents playing twice.
+
+3️⃣ controllers
+
+Controllers contain the actual logic.
+
+gameController.js
+
+Handles gameplay.
+
+Functions:
+
+getTodayQuestion()
+
+submitGuess()
+
+getUserResult()
+
+shareResult()
+adminController.js
+
+Used by you (admin).
+
+Functions:
+
+uploadWeeklyQuestions()
+
+getAllQuestions()
+
+deleteQuestion()
+
+Example request:
+
+POST /admin/upload-week
+
+Body:
+
+[
+ { date:"2026-03-10", question:"City of 2012 Olympics", answer:"LONDON"},
+ { date:"2026-03-11", question:"100m world record holder", answer:"BOLT"},
+ ...
+]
+
+Upload 7 questions in one request.
+
+authController.js
+
+Handles login.
+
+Functions:
+
+registerUser()
+loginUser()
+4️⃣ routes
+
+API endpoints.
+
+gameRoutes.js
+GET  /api/game/today
+POST /api/game/submit
+GET  /api/game/result
+authRoutes.js
+POST /api/auth/register
+POST /api/auth/login
+adminRoutes.js
+POST /api/admin/upload-week
+GET  /api/admin/questions
+DELETE /api/admin/question/:id
+5️⃣ middleware
+
+Security layer.
+
+authMiddleware.js
+
+Checks if user logged in.
+
+verifyJWT()
+adminMiddleware.js
+
+Ensures only admin can upload questions.
+
+6️⃣ services
+
+Contains game logic.
+
+dailyGameService.js
+
+Handles:
+
+getQuestionByDate()
+
+checkGuess()
+
+validatePlayOnce()
+
+calculateAttempts()
+
+This keeps controllers clean.
+
+7️⃣ utils
+
+Small helper functions.
+
+Example:
+
+dateHelper.js
+getTodayDate()
+getTomorrowDate()
+formatDate()
+🧩 Backend Flow
+Step 1
+
+Frontend calls
+
+GET /api/game/today
+
+Backend returns:
+
+{
+question:"City of 2012 Olympic athletics",
+length:6
+}
+
+⚠️ Answer NOT sent.
+
+Step 2
+
+User submits guess.
+
+POST /api/game/submit
+
+Body:
+
+{
+guess:"LONDER"
+}
+
+Backend returns evaluation:
+
+[
+"correct",
+"correct",
+"correct",
+"present",
+"absent",
+"absent"
+]
+Step 3
+
+When user wins.
+
+Store result:
+
+GameResult
+attempts:3
+date:2026-03-10
+Step 4
+
+Prevent replay.
+
+Before starting game:
+
+Check GameResult where
+userId + date
+
+If exists:
+
+"You already played today"
+📦 Admin Weekly Upload
+
+You upload 7 puzzles in one go.
+
+Request:
+
+POST /api/admin/upload-week
+
+Body:
+
+[
+{date:"2026-03-10", question:"City of 2012 Olympics", answer:"LONDON"},
+{date:"2026-03-11", question:"2008 Olympic host city", answer:"BEIJING"},
+{date:"2026-03-12", question:"100m legend", answer:"BOLT"},
+{date:"2026-03-13", question:"Long jump GOAT", answer:"POWELL"},
+{date:"2026-03-14", question:"Pole vault legend", answer:"BUBKA"},
+{date:"2026-03-15", question:"400m world record holder", answer:"KOCH"},
+{date:"2026-03-16", question:"Olympic marathon city 2020", answer:"TOKYO"}
+]
+🔐 Anti-Cheat Strategy
+
+Important.
+
+Answer should never go to frontend.
+
+Instead:
+
+Frontend sends guess → Backend checks → Backend returns result.
