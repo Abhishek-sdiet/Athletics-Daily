@@ -1,38 +1,114 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { users, questions, gameResults, type User, type InsertUser, type Question, type InsertQuestion, type GameResult } from "@shared/schema";
+import { eq, and, sql } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
+  getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  
+  getQuestionByDate(date: string): Promise<Question | undefined>;
+  getUpcomingQuestions(): Promise<Question[]>;
+  createQuestion(question: InsertQuestion): Promise<Question>;
+  deleteQuestion(id: number): Promise<void>;
+  
+  getGameResult(userId: number, date: string): Promise<GameResult | undefined>;
+  saveGameResult(result: Omit<GameResult, 'id' | 'playedAt'>): Promise<GameResult>;
+  updateGameResult(id: number, guesses: string[], isSolved: boolean): Promise<GameResult>;
+  getUserStats(userId: number): Promise<{ gamesPlayed: number, wins: number, winRate: number, bestAttempt: number | null, currentStreak: number }>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
-  }
-
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+export class DatabaseStorage implements IStorage {
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
+    const [user] = await db.insert(users).values(insertUser).returning();
     return user;
+  }
+
+  async getQuestionByDate(date: string): Promise<Question | undefined> {
+    const [question] = await db.select().from(questions).where(eq(questions.date, date));
+    return question;
+  }
+
+  async getUpcomingQuestions(): Promise<Question[]> {
+    // Return future questions and today's question
+    const today = new Date().toISOString().split('T')[0];
+    return db.select().from(questions).where(sql`${questions.date} >= ${today}`).orderBy(questions.date);
+  }
+
+  async createQuestion(question: InsertQuestion): Promise<Question> {
+    const [newQuestion] = await db.insert(questions).values(question).returning();
+    return newQuestion;
+  }
+  
+  async deleteQuestion(id: number): Promise<void> {
+    await db.delete(questions).where(eq(questions.id, id));
+  }
+
+  async getGameResult(userId: number, date: string): Promise<GameResult | undefined> {
+    const [result] = await db.select().from(gameResults).where(and(eq(gameResults.userId, userId), eq(gameResults.questionDate, date)));
+    return result;
+  }
+
+  async saveGameResult(result: Omit<GameResult, 'id' | 'playedAt'>): Promise<GameResult> {
+    const [newResult] = await db.insert(gameResults).values(result).returning();
+    return newResult;
+  }
+
+  async updateGameResult(id: number, guesses: string[], isSolved: boolean): Promise<GameResult> {
+    const [updated] = await db.update(gameResults).set({ guesses, isSolved }).where(eq(gameResults.id, id)).returning();
+    return updated;
+  }
+
+  async getUserStats(userId: number) {
+    const results = await db.select().from(gameResults).where(eq(gameResults.userId, userId)).orderBy(gameResults.questionDate);
+    
+    let gamesPlayed = results.length;
+    let wins = 0;
+    let bestAttempt: number | null = null;
+    let currentStreak = 0;
+    
+    let lastDate = null;
+    
+    for (const r of results) {
+      if (r.isSolved) {
+        wins++;
+        if (bestAttempt === null || r.guesses.length < bestAttempt) {
+          bestAttempt = r.guesses.length;
+        }
+        
+        // Calculate streak
+        const rDate = new Date(r.questionDate);
+        if (lastDate) {
+          const diffTime = Math.abs(rDate.getTime() - lastDate.getTime());
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          if (diffDays === 1) {
+            currentStreak++;
+          } else if (diffDays > 1) {
+            currentStreak = 1;
+          }
+        } else {
+          currentStreak = 1;
+        }
+        lastDate = rDate;
+      } else {
+        currentStreak = 0; // Streak broken
+      }
+    }
+    
+    const winRate = gamesPlayed > 0 ? Math.round((wins / gamesPlayed) * 100) : 0;
+    
+    return { gamesPlayed, wins, winRate, bestAttempt, currentStreak };
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
