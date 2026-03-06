@@ -16,7 +16,7 @@ import {
   DialogDescription,
   DialogFooter
 } from "@/components/ui/dialog";
-import { Loader2, Share2, ChartBar, AlertCircle } from "lucide-react";
+import { Loader2, Share2, BarChart2, AlertCircle, Trophy } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const MAX_GUESSES = 6;
@@ -266,7 +266,7 @@ export default function Game() {
               <Share2 className="mr-2 w-5 h-5" /> Share Result
             </Button>
             <Button variant="outline" onClick={() => setLocation("/profile")} className="w-full h-12 rounded-xl text-lg font-bold">
-              <ChartBar className="mr-2 w-5 h-5" /> View Stats
+              <BarChart2 className="mr-2 w-5 h-5" /> View Stats
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -289,7 +289,7 @@ export default function Game() {
               <Share2 className="mr-2 w-5 h-5" /> Share Attempt
             </Button>
             <Button variant="outline" onClick={() => setLocation("/profile")} className="w-full h-12 rounded-xl text-lg font-bold">
-              <ChartBar className="mr-2 w-5 h-5" /> View Stats
+              <BarChart2 className="mr-2 w-5 h-5" /> View Stats
             </Button>
           </DialogFooter>
         </DialogContent>
