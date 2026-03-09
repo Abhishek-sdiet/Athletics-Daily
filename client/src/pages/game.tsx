@@ -189,6 +189,11 @@ export default function Game() {
           </div>
         </div>
 
+        {/* Question */}
+        <div className="w-full mb-8 p-4 rounded-xl bg-card border border-card-border">
+          <p className="text-center text-lg font-semibold text-foreground">{game.question}</p>
+        </div>
+
         {/* Game Grid */}
         <div className="flex-1 w-full flex flex-col items-center justify-center min-h-[300px]">
           <div className="grid gap-1.5 sm:gap-2" style={{ gridTemplateRows: `repeat(${MAX_GUESSES}, 1fr)` }}>

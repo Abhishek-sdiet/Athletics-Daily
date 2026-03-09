@@ -1,0 +1,103 @@
+You are updating an existing full-stack game project. The game is already working well, so do NOT refactor the project, do NOT change the architecture, and do NOT modify any working logic, UI styling, or database structure.
+
+Your task is ONLY to fix two specific issues.
+
+If a change is required, make the smallest possible code change.
+
+Do NOT rewrite files unnecessarily.
+
+Issue 1 — Question Not Visible
+
+Problem:
+
+The daily question exists in the database.
+
+The backend correctly fetches the question.
+
+The game logic works if I manually read the question from the database.
+
+However, the question is not displayed on the game screen UI.
+
+Task:
+
+Find where the frontend fetches the question from the backend API.
+
+Ensure the fetched question is correctly passed to the game UI component.
+
+Ensure the question text is rendered in the game screen.
+
+Important rules:
+
+Do NOT change the API endpoint.
+
+Do NOT change database queries.
+
+Only fix the frontend rendering/binding issue.
+
+Ensure the question text is visible above the game board.
+
+Issue 2 — Redirect After Login/Signup
+
+Problem:
+
+Login and signup work correctly.
+
+A success message appears.
+
+But the user stays on the login page.
+
+The user must manually click Play to enter the game.
+
+Task:
+
+After a successful login or signup, automatically redirect the user to the game screen.
+
+Requirements:
+
+Redirect immediately after success response.
+
+Do NOT break authentication logic.
+
+Do NOT change existing auth APIs.
+
+Only add a redirect/navigation action.
+
+Example behavior:
+
+After login/signup success → automatically navigate to:
+
+/game
+
+(or whatever route currently loads the game).
+
+Important Constraints
+
+Do NOT:
+
+Refactor the project
+
+Rename files
+
+Change database schema
+
+Modify backend logic
+
+Change UI design
+
+Rewrite working components
+
+ONLY:
+
+Fix question rendering.
+
+Add automatic redirect after login/signup.
+
+Final Step
+
+After making changes:
+
+Verify the question is visible on the game screen.
+
+Verify login/signup redirects to the game automatically.
+
+Confirm that no other functionality changed.
