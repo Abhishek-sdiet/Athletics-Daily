@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
-import { useLogin, useRegister } from "@/hooks/use-auth";
+import { useLogin, useRegister, useAuth } from "@/hooks/use-auth";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +15,13 @@ export default function Auth() {
   
   const loginMutation = useLogin();
   const registerMutation = useRegister();
+  const { data: user } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      setLocation("/game");
+    }
+  }, [user, setLocation]);
   
   const [loginData, setLoginData] = useState({ username: "", password: "" });
   const [registerData, setRegisterData] = useState({ username: "", email: "", password: "" });
@@ -24,7 +31,6 @@ export default function Auth() {
     try {
       await loginMutation.mutateAsync(loginData);
       toast({ title: "Welcome back!", description: "Successfully logged in." });
-      setLocation("/game");
     } catch (error: any) {
       toast({ variant: "destructive", title: "Login Failed", description: error.message });
     }
@@ -35,7 +41,6 @@ export default function Auth() {
     try {
       await registerMutation.mutateAsync(registerData);
       toast({ title: "Account Created!", description: "Welcome to Athletics Daily." });
-      setLocation("/game");
     } catch (error: any) {
       toast({ variant: "destructive", title: "Registration Failed", description: error.message });
     }
