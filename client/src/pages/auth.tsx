@@ -38,6 +38,14 @@ export default function Auth() {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!registerData.email.endsWith("@gmail.com")) {
+      toast({
+        variant: "destructive",
+        title: "Invalid Email",
+        description: "Please use a valid Gmail address (example@gmail.com)"
+      });
+      return;
+    }
     try {
       await registerMutation.mutateAsync(registerData);
       toast({ title: "Account Created!", description: "Welcome to Athletics Daily." });
