@@ -65,9 +65,14 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateGameResult(id: number, guesses: string[], isSolved: boolean): Promise<GameResult> {
-    const [updated] = await db.update(gameResults).set({ guesses, isSolved }).where(eq(gameResults.id, id)).returning();
-    return updated;
-  }
+  const [updated] = await db
+    .update(gameResults)
+    .set({ guesses: guesses as any, isSolved })
+    .where(eq(gameResults.id, id))
+    .returning();
+
+  return updated;
+}
 
   async getUserStats(userId: number) {
     const results = await db.select().from(gameResults).where(eq(gameResults.userId, userId)).orderBy(gameResults.questionDate);
