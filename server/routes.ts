@@ -19,10 +19,10 @@ function setupAuth(app: Express) {
       conString: process.env.DATABASE_URL,
       createTableIfMissing: true,
     }),
-    cookie: {
-      secure: app.get("env") === "production",
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-    }
+   cookie: {
+  secure: false,
+  maxAge: 30 * 24 * 60 * 60 * 1000,
+}
   };
 
   if (app.get("env") === "production") {

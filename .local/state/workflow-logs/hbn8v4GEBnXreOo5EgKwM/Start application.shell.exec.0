@@ -1,0 +1,215 @@
+
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+[1G[0K6:49:19 AM [express] serving on port 5000
+6:49:27 AM [express] GET /api/auth/me 401 in 8ms :: {"message":"Unauthorized"}
+6:49:29 AM [express] GET /api/auth/me 401 in 1ms :: {"message":"Unauthorized"}
+6:49:32 AM [express] GET /api/auth/me 401 in 1ms :: {"message":"Unauthorized"}
+6:50:07 AM [express] GET /api/auth/me 401 in 6ms :: {"message":"Unauthorized"}
+6:50:09 AM [express] GET /api/game/today 401 in 5ms :: {"message":"Unauthorized"}
+6:50:21 AM [express] POST /api/auth/login 200 in 36ms :: {"id":2,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-06T09:43:58.562Z"}
+6:50:21 AM [express] GET /api/game/today 304 in 9ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":{"guesses":["JFDKSJ","FHJHDF","NEERAJ"],"evaluations":[["absent","absent","absent","absent","absent","correct"],["absent","absent","present","absent","absent","absent"],["correct","correct","correct","correct","correct","correct"]],"isSolved":true,"isGameOver":true}}
+6:50:21 AM [express] GET /api/auth/me 304 in 18ms :: {"id":2,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-06T09:43:58.562Z"}
+6:50:39 AM [express] POST /api/auth/logout 200 in 37ms :: {"message":"Logged out"}
+6:50:40 AM [express] GET /api/auth/me 401 in 7ms :: {"message":"Unauthorized"}
+6:50:42 AM [express] GET /api/game/today 401 in 8ms :: {"message":"Unauthorized"}
+6:50:53 AM [express] POST /api/auth/login 200 in 33ms :: {"id":2,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-06T09:43:58.562Z"}
+6:50:54 AM [express] GET /api/game/today 304 in 13ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":{"guesses":["JFDKSJ","FHJHDF","NEERAJ"],"evaluations":[["absent","absent","absent","absent","absent","correct"],["absent","absent","present","absent","absent","absent"],["correct","correct","correct","correct","correct","correct"]],"isSolved":true,"isGameOver":true}}
+6:50:54 AM [express] GET /api/auth/me 304 in 19ms :: {"id":2,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-06T09:43:58.562Z"}
+6:51:16 AM [express] POST /api/auth/register 201 in 131ms :: {"id":6,"username":"rep","email":"rep@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:51:16.796Z"}
+6:51:17 AM [express] GET /api/auth/me 200 in 7ms :: {"id":6,"username":"rep","email":"rep@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:51:16.796Z"}
+6:51:49 AM [express] POST /api/auth/logout 200 in 64ms :: {"message":"Logged out"}
+6:51:49 AM [express] GET /api/game/today 401 in 6ms :: {"message":"Unauthorized"}
+6:51:49 AM [express] GET /api/auth/me 401 in 16ms :: {"message":"Unauthorized"}
+6:52:07 AM [express] POST /api/auth/register 201 in 37ms :: {"id":7,"username":"pppp","email":"pppp@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:52:07.640Z"}
+6:52:08 AM [express] GET /api/game/today 200 in 9ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+6:52:08 AM [express] GET /api/auth/me 200 in 18ms :: {"id":7,"username":"pppp","email":"pppp@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:52:07.640Z"}
+6:52:20 AM [express] POST /api/auth/login 200 in 37ms :: {"id":7,"username":"pppp","email":"pppp@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:52:07.640Z"}
+6:52:21 AM [express] GET /api/auth/me 304 in 5ms :: {"id":7,"username":"pppp","email":"pppp@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:52:07.640Z"}
+6:52:30 AM [express] POST /api/auth/logout 200 in 14ms :: {"message":"Logged out"}
+6:52:31 AM [express] GET /api/game/today 401 in 6ms :: {"message":"Unauthorized"}
+6:52:31 AM [express] GET /api/auth/me 401 in 27ms :: {"message":"Unauthorized"}
+6:52:33 AM [express] GET /api/game/today 401 in 6ms :: {"message":"Unauthorized"}
+6:52:40 AM [express] POST /api/auth/login 200 in 14ms :: {"id":7,"username":"pppp","email":"pppp@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:52:07.640Z"}
+6:52:40 AM [express] GET /api/auth/me 304 in 12ms :: {"id":7,"username":"pppp","email":"pppp@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:52:07.640Z"}
+6:52:40 AM [express] GET /api/game/today 304 in 33ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+6:52:56 AM [express] POST /api/auth/logout 200 in 66ms :: {"message":"Logged out"}
+6:52:56 AM [express] GET /api/auth/me 401 in 5ms :: {"message":"Unauthorized"}
+6:52:56 AM [express] GET /api/game/today 401 in 15ms :: {"message":"Unauthorized"}
+6:52:58 AM [express] GET /api/game/today 401 in 6ms :: {"message":"Unauthorized"}
+6:53:12 AM [express] POST /api/auth/register 400 in 27ms :: {"message":"Username already exists"}
+6:53:24 AM [express] POST /api/auth/login 200 in 33ms :: {"id":6,"username":"rep","email":"rep@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:51:16.796Z"}
+6:53:24 AM [express] GET /api/auth/me 200 in 7ms :: {"id":6,"username":"rep","email":"rep@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:51:16.796Z"}
+6:53:24 AM [express] GET /api/game/today 304 in 18ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+6:53:44 AM [express] POST /api/auth/logout 200 in 30ms :: {"message":"Logged out"}
+6:53:44 AM [express] GET /api/game/today 401 in 7ms :: {"message":"Unauthorized"}
+6:53:44 AM [express] GET /api/auth/me 401 in 17ms :: {"message":"Unauthorized"}
+6:53:47 AM [express] GET /api/game/today 401 in 6ms :: {"message":"Unauthorized"}
+6:53:59 AM [express] POST /api/auth/login 401 in 60ms
+6:54:04 AM [express] POST /api/auth/login 401 in 5ms
+6:54:14 AM [express] POST /api/auth/login 200 in 19ms :: {"id":1,"username":"admin","email":"admin@example.com","password":"password123","isAdmin":true,"createdAt":"2026-03-06T09:33:00.400Z"}
+6:54:14 AM [express] GET /api/game/today 304 in 13ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+6:54:14 AM [express] GET /api/auth/me 200 in 21ms :: {"id":1,"username":"admin","email":"admin@example.com","password":"password123","isAdmin":true,"createdAt":"2026-03-06T09:33:00.400Z"}
+6:54:27 AM [express] GET /api/admin/questions 304 in 32ms :: [{"id":7,"questionText":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","answer":"NEERAJ","date":"2026-03-10","category":"athletics","createdAt":"2026-03-09T12:03:35.947Z"},{"id":8,"questionText":"Which legendary Indian sprinter was known as the Flying Sikh?","answer":"MILKHA","date":"2026-03-11","category":"athletics","createdAt":"2026-03-09T12:03:35.982Z"},{"id":9,"questionText":"Which Indian female sprinter won the 100m gold at the 2018 Asian Games?","answer":"DUTTEE","date":"2026-03-12","category":"athletics","createdAt":"2026-03-09T12:03:35.987Z"},{"id":10,"questionText":"Which Indian steeplechase runner won silver at the 2022 Commonwealth Games?","answer":"AVINASH","date":"2026-03-13","category":"athletics","createdAt":"2026-03-09T12:03:35.991Z"},{"id":11,"questionText":"Which Indian long jumper won bronze at the 2022 Commonwealth Games?","answer":"MURALI","date":"2026-03-14","category":"athletics","createdAt":"2026-03-09T12:03:35.995Z"},{"id":12,"questionText":"Which Indian shot putter won gold at the 2018 Asian Games?","answer":"TOORRR","date":"2026-03-15","category":"athletics","createdAt":"2026-03-09T12:03:35.999Z"},{"id":13,"questionText":"Which Indian woman won Olympic silver in the 800m at Los Angeles 1984?","answer":"USHAAA","date":"2026-03-16","category":"athletics","createdAt":"2026-03-09T12:03:36.003Z"},{"id":14,"questionText":"Which Indian javelin thrower won silver at the 2023 World Championships?","answer":"KISHOR","date":"2026-03-17","category":"athletics","createdAt":"2026-03-09T12:03:36.006Z"},{"id":15,"questionText":"Which city hosted the 2010 Commonwealth Games where India won many athletics medals?","answer":"DELHII","date":"2026-03-18","category":"athletics","createdAt":"2026-03-09T12:03:36.010Z"},{"id":16,"questionText":"Which Indian woman won a World Championships bronze medal in long jump in 2003?","answer":"ANJUBOB","date":"2026-03-19","category":"athletics","createdAt":"2026-03-09T12:03:36.014Z"}]
+6:55:36 AM [express] POST /api/auth/logout 200 in 34ms :: {"message":"Logged out"}
+6:55:37 AM [express] GET /api/auth/me 401 in 6ms :: {"message":"Unauthorized"}
+6:55:37 AM [express] GET /api/admin/questions 401 in 16ms :: {"message":"Unauthorized"}
+6:55:39 AM [express] GET /api/game/today 401 in 5ms :: {"message":"Unauthorized"}
+6:55:48 AM [express] POST /api/auth/login 401 in 16ms
+6:56:15 AM [express] POST /api/auth/register 201 in 67ms :: {"id":8,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:56:15.769Z"}
+6:56:16 AM [express] GET /api/auth/me 200 in 9ms :: {"id":8,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:56:15.769Z"}
+6:56:16 AM [express] GET /api/game/today 304 in 24ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+6:56:47 AM [express] GET /api/auth/me 304 in 5ms :: {"id":8,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:56:15.769Z"}
+6:56:52 AM [express] GET /api/auth/me 304 in 6ms :: {"id":8,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:56:15.769Z"}
+6:58:11 AM [express] POST /api/auth/logout 200 in 39ms :: {"message":"Logged out"}
+6:58:12 AM [express] GET /api/auth/me 401 in 6ms :: {"message":"Unauthorized"}
+6:58:14 AM [express] GET /api/game/today 401 in 9ms :: {"message":"Unauthorized"}
+6:58:21 AM [express] POST /api/auth/login 200 in 14ms :: {"id":8,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:56:15.769Z"}
+6:58:21 AM [express] GET /api/auth/me 304 in 8ms :: {"id":8,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:56:15.769Z"}
+6:58:21 AM [express] GET /api/game/today 304 in 18ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+6:58:37 AM [express] POST /api/auth/logout 200 in 38ms :: {"message":"Logged out"}
+6:58:37 AM [express] GET /api/auth/me 401 in 6ms :: {"message":"Unauthorized"}
+6:58:39 AM [express] GET /api/game/today 401 in 6ms :: {"message":"Unauthorized"}
+6:58:46 AM [express] POST /api/auth/login 200 in 25ms :: {"id":8,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:56:15.769Z"}
+6:58:46 AM [express] GET /api/auth/me 304 in 6ms :: {"id":8,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:56:15.769Z"}
+6:58:46 AM [express] GET /api/game/today 304 in 20ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+6:59:26 AM [express] POST /api/auth/logout 200 in 34ms :: {"message":"Logged out"}
+6:59:27 AM [express] GET /api/auth/me 401 in 5ms :: {"message":"Unauthorized"}
+6:59:29 AM [express] GET /api/game/today 401 in 6ms :: {"message":"Unauthorized"}
+7:00:18 AM [express] POST /api/auth/register 201 in 44ms :: {"id":9,"username":"xyz","email":"xyz@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T07:00:18.821Z"}
+7:00:19 AM [express] GET /api/auth/me 200 in 9ms :: {"id":9,"username":"xyz","email":"xyz@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T07:00:18.821Z"}
+7:00:19 AM [express] GET /api/game/today 304 in 22ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m7:14:25 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/auth.tsx, /src/index.css[22m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m7:14:26 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/auth.tsx, /src/index.css[22m [33m(x2)[39m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m7:14:26 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/auth.tsx, /src/index.css[22m [33m(x3)[39m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m7:14:26 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/auth.tsx, /src/index.css[22m [33m(x4)[39m
+7:14:30 AM [express] GET /api/game/today 304 in 7ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}

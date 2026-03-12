@@ -1,0 +1,43 @@
+[1G[0K⠙[1G[0K
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+[1G[0K⠙[1G[0K6:35:20 AM [express] serving on port 5000
+6:35:28 AM [express] GET /api/auth/me 304 in 7ms :: {"id":2,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-06T09:43:58.562Z"}
+6:35:47 AM [express] GET /api/auth/me 304 in 6ms :: {"id":2,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-06T09:43:58.562Z"}
+6:35:59 AM [express] POST /api/auth/logout 200 in 134ms :: {"message":"Logged out"}
+6:35:59 AM [express] GET /api/auth/me 401 in 7ms :: {"message":"Unauthorized"}
+6:36:32 AM [express] POST /api/auth/register 201 in 101ms :: {"id":5,"username":"xyz","email":"xyz@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:36:32.434Z"}
+6:36:32 AM [express] GET /api/auth/me 200 in 6ms :: {"id":5,"username":"xyz","email":"xyz@123","password":"123456","isAdmin":false,"createdAt":"2026-03-10T06:36:32.434Z"}
+6:36:32 AM [express] GET /api/game/today 200 in 16ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+6:37:24 AM [express] POST /api/auth/logout 200 in 36ms :: {"message":"Logged out"}
+6:37:24 AM [express] GET /api/auth/me 401 in 6ms :: {"message":"Unauthorized"}
+6:37:29 AM [express] GET /api/game/today 401 in 4ms :: {"message":"Unauthorized"}
+6:37:40 AM [express] POST /api/auth/login 401 in 67ms
+6:37:50 AM [express] POST /api/auth/login 200 in 16ms :: {"id":1,"username":"admin","email":"admin@example.com","password":"password123","isAdmin":true,"createdAt":"2026-03-06T09:33:00.400Z"}
+6:37:51 AM [express] GET /api/auth/me 200 in 8ms :: {"id":1,"username":"admin","email":"admin@example.com","password":"password123","isAdmin":true,"createdAt":"2026-03-06T09:33:00.400Z"}
+6:37:51 AM [express] GET /api/game/today 304 in 22ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+6:38:00 AM [express] GET /api/game/stats 200 in 9ms :: {"gamesPlayed":1,"wins":0,"winRate":0,"bestAttempt":null,"currentStreak":0}
+6:38:07 AM [express] GET /api/admin/questions 200 in 13ms :: [{"id":7,"questionText":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","answer":"NEERAJ","date":"2026-03-10","category":"athletics","createdAt":"2026-03-09T12:03:35.947Z"},{"id":8,"questionText":"Which legendary Indian sprinter was known as the Flying Sikh?","answer":"MILKHA","date":"2026-03-11","category":"athletics","createdAt":"2026-03-09T12:03:35.982Z"},{"id":9,"questionText":"Which Indian female sprinter won the 100m gold at the 2018 Asian Games?","answer":"DUTTEE","date":"2026-03-12","category":"athletics","createdAt":"2026-03-09T12:03:35.987Z"},{"id":10,"questionText":"Which Indian steeplechase runner won silver at the 2022 Commonwealth Games?","answer":"AVINASH","date":"2026-03-13","category":"athletics","createdAt":"2026-03-09T12:03:35.991Z"},{"id":11,"questionText":"Which Indian long jumper won bronze at the 2022 Commonwealth Games?","answer":"MURALI","date":"2026-03-14","category":"athletics","createdAt":"2026-03-09T12:03:35.995Z"},{"id":12,"questionText":"Which Indian shot putter won gold at the 2018 Asian Games?","answer":"TOORRR","date":"2026-03-15","category":"athletics","createdAt":"2026-03-09T12:03:35.999Z"},{"id":13,"questionText":"Which Indian woman won Olympic silver in the 800m at Los Angeles 1984?","answer":"USHAAA","date":"2026-03-16","category":"athletics","createdAt":"2026-03-09T12:03:36.003Z"},{"id":14,"questionText":"Which Indian javelin thrower won silver at the 2023 World Championships?","answer":"KISHOR","date":"2026-03-17","category":"athletics","createdAt":"2026-03-09T12:03:36.006Z"},{"id":15,"questionText":"Which city hosted the 2010 Commonwealth Games where India won many athletics medals?","answer":"DELHII","date":"2026-03-18","category":"athletics","createdAt":"2026-03-09T12:03:36.010Z"},{"id":16,"questionText":"Which Indian woman won a World Championships bronze medal in long jump in 2003?","answer":"ANJUBOB","date":"2026-03-19","category":"athletics","createdAt":"2026-03-09T12:03:36.014Z"}]
+6:39:13 AM [express] POST /api/auth/logout 200 in 57ms :: {"message":"Logged out"}
+6:39:14 AM [express] GET /api/auth/me 401 in 6ms :: {"message":"Unauthorized"}
+6:39:14 AM [express] GET /api/admin/questions 401 in 9ms :: {"message":"Unauthorized"}
+6:39:16 AM [express] GET /api/game/today 401 in 10ms :: {"message":"Unauthorized"}
+6:39:23 AM [express] POST /api/auth/login 200 in 16ms :: {"id":2,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-06T09:43:58.562Z"}
+6:39:23 AM [express] GET /api/auth/me 200 in 5ms :: {"id":2,"username":"dev","email":"dev@123","password":"123456","isAdmin":false,"createdAt":"2026-03-06T09:43:58.562Z"}
+6:39:23 AM [express] GET /api/game/today 304 in 6ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":null}
+6:40:10 AM [express] POST /api/game/submit 200 in 64ms :: {"evaluation":["absent","absent","absent","absent","absent","correct"],"isSolved":false,"isGameOver":false,"guesses":["JFDKSJ"],"evaluations":[["absent","absent","absent","absent","absent","correct"]]}
+6:40:11 AM [express] GET /api/game/today 200 in 9ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":{"guesses":["JFDKSJ"],"evaluations":[["absent","absent","absent","absent","absent","correct"]],"isSolved":false,"isGameOver":false}}
+6:40:19 AM [express] POST /api/game/submit 200 in 12ms :: {"evaluation":["absent","absent","present","absent","absent","absent"],"isSolved":false,"isGameOver":false,"guesses":["JFDKSJ","FHJHDF"],"evaluations":[["absent","absent","absent","absent","absent","correct"],["absent","absent","present","absent","absent","absent"]]}
+6:40:19 AM [express] GET /api/game/today 200 in 7ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":{"guesses":["JFDKSJ","FHJHDF"],"evaluations":[["absent","absent","absent","absent","absent","correct"],["absent","absent","present","absent","absent","absent"]],"isSolved":false,"isGameOver":false}}
+6:40:26 AM [express] POST /api/game/submit 200 in 14ms :: {"evaluation":["correct","correct","correct","correct","correct","correct"],"isSolved":true,"isGameOver":true,"guesses":["JFDKSJ","FHJHDF","NEERAJ"],"evaluations":[["absent","absent","absent","absent","absent","correct"],["absent","absent","present","absent","absent","absent"],["correct","correct","correct","correct","correct","correct"]]}
+6:40:26 AM [express] GET /api/game/today 200 in 8ms :: {"question":"Which Indian javelin thrower won the gold medal at the Tokyo Olympics?","length":6,"date":"2026-03-10","gameState":{"guesses":["JFDKSJ","FHJHDF","NEERAJ"],"evaluations":[["absent","absent","absent","absent","absent","correct"],["absent","absent","present","absent","absent","absent"],["correct","correct","correct","correct","correct","correct"]],"isSolved":true,"isGameOver":true}}
+6:40:44 AM [express] POST /api/auth/logout 200 in 29ms :: {"message":"Logged out"}
+6:40:45 AM [express] GET /api/auth/me 401 in 5ms :: {"message":"Unauthorized"}
+6:40:45 AM [express] GET /api/game/today 401 in 5ms :: {"message":"Unauthorized"}
+6:48:07 AM [express] GET /api/auth/me 401 in 4ms :: {"message":"Unauthorized"}
+6:48:07 AM [express] GET /api/game/today 401 in 5ms :: {"message":"Unauthorized"}
+6:48:16 AM [express] GET /api/auth/me 401 in 5ms :: {"message":"Unauthorized"}
+6:48:16 AM [express] GET /api/game/today 401 in 7ms :: {"message":"Unauthorized"}
+6:48:21 AM [express] GET /api/auth/me 401 in 7ms :: {"message":"Unauthorized"}
+6:48:21 AM [express] GET /api/game/today 401 in 6ms :: {"message":"Unauthorized"}
