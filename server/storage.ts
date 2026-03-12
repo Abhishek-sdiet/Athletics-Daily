@@ -30,7 +30,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const [user] = await db.insert(users).values(insertUser).returning();
+    const [user] = await db.insert(users).values(insertUser as any).returning();
     return user;
   }
 
@@ -46,7 +46,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createQuestion(question: InsertQuestion): Promise<Question> {
-    const [newQuestion] = await db.insert(questions).values(question).returning();
+    const [newQuestion] = await db.insert(questions).values(question as any).returning();
     return newQuestion;
   }
   
@@ -60,7 +60,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async saveGameResult(result: Omit<GameResult, 'id' | 'playedAt'>): Promise<GameResult> {
-    const [newResult] = await db.insert(gameResults).values(result).returning();
+    const [newResult] = await db.insert(gameResults).values(result as any).returning();
     return newResult;
   }
 
