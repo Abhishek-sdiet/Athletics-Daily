@@ -68,7 +68,7 @@ export class DatabaseStorage implements IStorage {
   async updateGameResult(id: number, guesses: string[], isSolved: boolean): Promise<GameResult> {
   const [updated] = await db
     .update(gameResults)
-    .set({ guesses: guesses as any, isSolved })
+    .set({ guesses , isSolved })
     .where(eq(gameResults.id, id))
     .returning();
 
