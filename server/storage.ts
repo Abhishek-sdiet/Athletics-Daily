@@ -14,7 +14,7 @@ export interface IStorage {
   deleteQuestion(id: number): Promise<void>;
   
   getGameResult(userId: number, date: string): Promise<GameResult | undefined>;
-  saveGameResult(result: Omit<GameResult, 'id' | 'playedAt'>): Promise<GameResult>;
+  saveGameResult(result: InsertGameResult): Promise<GameResult>;
   updateGameResult(id: number, guesses: string[], isSolved: boolean): Promise<GameResult>;
   getUserStats(userId: number): Promise<{ gamesPlayed: number, wins: number, winRate: number, bestAttempt: number | null, currentStreak: number }>;
 }
@@ -36,7 +36,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getQuestionByDate(date: string): Promise<Question | undefined> {
-    const [question] = await db.select().from(questions).where(eq(questions.date, date));
+    const [question] = await db.select().from(questions).where(eq(questions.date, new Date(date)));
     return question;
   }
 
@@ -56,14 +56,14 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getGameResult(userId: number, date: string): Promise<GameResult | undefined> {
-    const [result] = await db.select().from(gameResults).where(and(eq(gameResults.userId, userId), eq(gameResults.questionDate, date)));
+    const [result] = await db.select().from(gameResults).where(and(eq(gameResults.userId, userId), eq(gameResults.questionDate, new Date(date))));
     return result;
   }
 
-  async saveGameResult(result: Omit<GameResult, 'id' | 'playedAt'>): Promise<GameResult> {
-    const [newResult] = await db.insert(gameResults).values(result as any).returning();
-    return newResult;
-  }
+  async saveGameResult(result: InsertGameResult): Promise<GameResult> {
+  const [newResult] = await db.insert(gameResults).values(result).returning();
+  return newResult;
+}
 
   async updateGameResult(id: number, guesses: string[], isSolved: boolean): Promise<GameResult> {
   const [updated] = await db
