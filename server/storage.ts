@@ -36,7 +36,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getQuestionByDate(date: string): Promise<Question | undefined> {
-    const [question] = await db.select().from(questions).where(eq(questions.date, new Date(date)));
+    const [question] = await db.select().from(questions).where(eq(questions.date, date));
     return question;
   }
 
@@ -56,7 +56,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getGameResult(userId: number, date: string): Promise<GameResult | undefined> {
-    const [result] = await db.select().from(gameResults).where(and(eq(gameResults.userId, userId), eq(gameResults.questionDate, new Date(date))));
+    const [result] = await db.select().from(gameResults).where(and(eq(gameResults.userId, userId), eq(gameResults.questionDate, date)));
     return result;
   }
 
@@ -68,7 +68,7 @@ export class DatabaseStorage implements IStorage {
   async updateGameResult(id: number, guesses: string[], isSolved: boolean): Promise<GameResult> {
   const [updated] = await db
     .update(gameResults)
-    .set({ guesses: guesses as any, isSolved })
+    .set({ guesses , isSolved } as any )
     .where(eq(gameResults.id, id))
     .returning();
 
