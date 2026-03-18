@@ -1,5 +1,5 @@
-import { db } from "./db";
-import { users, questions, gameResults, type User, type InsertUser, type Question, type InsertQuestion, type GameResult ,type InsertGameResult } from "@shared/schema";
+import { db } from "./db.js";
+import { users, questions, gameResults, type User, type InsertUser, type Question, type InsertQuestion, type GameResult ,type InsertGameResult } from "../shared/schema.js";
 import { eq, and, sql } from "drizzle-orm";
 
 

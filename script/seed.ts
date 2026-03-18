@@ -1,5 +1,5 @@
 import { db } from "../server/db";
-import { users, questions } from "@shared/schema";
+import { users, questions } from "../shared/schema.js";
 import { hashSync } from "crypto";
 
 async function seed() {
