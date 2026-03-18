@@ -1,6 +1,7 @@
 import { db } from "./db";
-import { users, questions, gameResults, type User, type InsertUser, type Question, type InsertQuestion, type GameResult } from "@shared/schema";
+import { users, questions, gameResults, type User, type InsertUser, type Question, type InsertQuestion, type GameResult ,type InsertGameResult } from "@shared/schema";
 import { eq, and, sql } from "drizzle-orm";
+
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
