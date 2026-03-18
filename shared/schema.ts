@@ -51,6 +51,6 @@ category: z.string().optional(),
 export type User = typeof users.$inferSelect;
 export type Question = typeof questions.$inferSelect;
 export type GameResult = typeof gameResults.$inferSelect;
-
+export type InsertGameResult = typeof gameResults.$inferInsert;
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type InsertQuestion = z.infer<typeof insertQuestionSchema>;
