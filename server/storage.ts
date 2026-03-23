@@ -1,6 +1,7 @@
-import { db } from "./db";
-import { users, questions, gameResults, type User, type InsertUser, type Question, type InsertQuestion, type GameResult } from "@shared/schema";
+import { db } from "./db.js";
+import { users, questions, gameResults, type User, type InsertUser, type Question, type InsertQuestion, type GameResult ,type InsertGameResult } from "../shared/schema.js";
 import { eq, and, sql } from "drizzle-orm";
+
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -13,7 +14,7 @@ export interface IStorage {
   deleteQuestion(id: number): Promise<void>;
   
   getGameResult(userId: number, date: string): Promise<GameResult | undefined>;
-  saveGameResult(result: Omit<GameResult, 'id' | 'playedAt'>): Promise<GameResult>;
+  saveGameResult(result: InsertGameResult): Promise<GameResult>;
   updateGameResult(id: number, guesses: string[], isSolved: boolean): Promise<GameResult>;
   getUserStats(userId: number): Promise<{ gamesPlayed: number, wins: number, winRate: number, bestAttempt: number | null, currentStreak: number }>;
 }
@@ -30,7 +31,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const [user] = await db.insert(users).values(insertUser).returning();
+    const [user] = await db.insert(users).values(insertUser as any).returning();
     return user;
   }
 
@@ -46,7 +47,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createQuestion(question: InsertQuestion): Promise<Question> {
-    const [newQuestion] = await db.insert(questions).values(question).returning();
+    const [newQuestion] = await db.insert(questions).values(question as any).returning();
     return newQuestion;
   }
   
@@ -59,15 +60,20 @@ export class DatabaseStorage implements IStorage {
     return result;
   }
 
-  async saveGameResult(result: Omit<GameResult, 'id' | 'playedAt'>): Promise<GameResult> {
-    const [newResult] = await db.insert(gameResults).values(result).returning();
-    return newResult;
-  }
+  async saveGameResult(result: InsertGameResult): Promise<GameResult> {
+  const [newResult] = await db.insert(gameResults).values(result).returning();
+  return newResult;
+}
 
   async updateGameResult(id: number, guesses: string[], isSolved: boolean): Promise<GameResult> {
-    const [updated] = await db.update(gameResults).set({ guesses, isSolved }).where(eq(gameResults.id, id)).returning();
-    return updated;
-  }
+  const [updated] = await db
+    .update(gameResults)
+    .set({ guesses , isSolved } as any )
+    .where(eq(gameResults.id, id))
+    .returning();
+
+  return updated;
+}
 
   async getUserStats(userId: number) {
     const results = await db.select().from(gameResults).where(eq(gameResults.userId, userId)).orderBy(gameResults.questionDate);
